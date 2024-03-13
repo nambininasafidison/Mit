@@ -1,0 +1,85 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: pop;
+}
+
+@font-face {
+  font-family: pop;
+  src: url(../assets/FontsFree-Net-Poppins-Medium.ttf);
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+}
+
+.main {
+  width: 35vw;
+  height: 100vh;
+  padding: 20vh 10vh 10vh 10vh;
+}
+
+.others {
+  width: 65vw;
+  height: 100vh;
+  background-image: url(../assets/fire.jpg);
+  background-size: cover;
+  background-position: center;
+}
+
+h1 {
+  font-weight: bolder;
+  font-size: 3vw;
+}
+
+p {
+  font-size: 0.8vw;
+  color: #aaa;
+  margin-bottom: 10vh;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+}
+
+.login label {
+  font-size: 0.8vw;
+  color: #aaa;
+}
+
+.login input {
+  margin: 2vh 0;
+  height: 6vh;
+  font-size: 0.8vw;
+  border-radius: 0.2vw;
+  border: 1px solid #aaa;
+  padding: 0 1vw;
+}
+
+.login .submit {
+  margin-top: 15vh;
+  background-color: #0080fe;
+  color: #eee;
+}
+
+.sign {
+  display: flex;
+  justify-content: center;
+}
+
+.sign a {
+  margin: 0 1vw;
+  font-size: 0.8vw;
+  color: #aaa;
+  text-decoration: none;
+}
+
+.sign a:hover {
+  color: #9d0ec9;
+  text-decoration: underline;
+}

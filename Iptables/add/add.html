@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/add.css" />
+    <title>Add</title>
+  </head>
+  <body>
+    <nav>
+      <div class="log"></div>
+      <p>Log out</p>
+    </nav>
+    <section class="main">
+      <div class="head">
+        <h1>ADD</h1>
+        <p>You can add new rules for your firewall configuration.</p>
+      </div>
+      <form class="login signup" action="" method="post">
+        <label for="policy">Policy</label>
+        <select name="policy" id="policy">
+          <option value="input">INPUT</option>
+          <option value="forward">FORWARD</option>
+          <option value="output">OUTPUT</option>
+        </select>
+        <label for="sense">Sense</label>
+        <select name="sense" id="sense">
+          <option value="accept">ACCEPT</option>
+          <option value="reject">REJECT</option>
+          <option value="drop">DROP</option>
+        </select>
+        <label for="interface">Interface</label>
+        <select name="interface" id="interface">
+          <option value="none">none</option>
+        </select>
+        <label for="protocol">Protocol</label>
+        <select name="protocol" id="protocol">
+          <option value="none">none</option>
+        </select>
+        <label for="port">Port</label>
+        <input type="text" name="port" id="port" />
+        <div class="check">
+          <input type="checkbox" name="agree" id="agree" />
+          <label for="agree">Multi-port</label>
+        </div>
+        <label for="ip">IP</label>
+        <input type="text" name="ip" id="ip" />
+        <label for="mac">Mac</label>
+        <input type="text" name="mac" id="mac" />
+        <label for="source">Source</label>
+        <input type="text" name="source" id="source" />
+        <label for="destination">Destination</label>
+        <input type="text" name="destination" id="destination" />
+        <div class="confirm">
+          <button class="cancel">Cancel</button>
+          <input type="submit" value="Add Rules" class="submit" />
+        </div>
+      </form>
+      <div class="sign">
+        <p>Navigate to home page?</p>
+        <a href="../home/home.html">Home</a>
+      </div>
+    </section>
+    <section class="others">
+      <div class="img"></div>
+    </section>
+    <section class="multi">
+      <div class="number">
+        <label for="ports">Port number : </label>
+        <input
+          type="number"
+          name="ports"
+          id="ports"
+          required
+          min="1"
+          max="15"
+        />
+        <button class="submit submitPorts">OK</button>
+      </div>
+      <div class="container"></div>
+    </section>
+    <script>
+      let port = document.querySelector("#agree");
+      port.addEventListener("change", () => {
+        port.checked
+          ? (document.querySelector(".multi").style.display = "block")
+          : (document.querySelector(".mutli").style.display = "none");
+      });
+
+      const subs = document.querySelector(".submitPorts");
+      subs.addEventListener("click", () => {
+        const n = document.querySelector("#ports").value;
+        console.log(n);
+        const form = document.createElement("form");
+        const container = document.querySelector(".container");
+        if (n <= document.querySelector("#ports").max) {
+          for (let i = 1; i <= n; i++) {
+            const input = document.createElement("input");
+            input.type = "number";
+            input.id = "input" + i;
+            form.appendChild(input);
+          }
+          container.appendChild(form);
+        }
+        else {
+            const res = document.createElement('p');
+            res.innerText = "Your number is beyond the maximum";
+            res.style.color = "#f00";
+            container.appendChild(res);
+        }
+      });
+    </script>
+  </body>
+</html>
