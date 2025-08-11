@@ -87,6 +87,7 @@ void triangularisation(float **a, float *b, int dim) {
             a[i][k] = 0;
         }
     }
+	display_result(a, b, dim);
 }
 
 float *resolution(float **a, float *b, int dim) {

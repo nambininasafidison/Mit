@@ -70,60 +70,48 @@ void get_dataf(int *dim, float ***a, float **b, float **x, float **y) {
 void cholesky(float **a, float *b, float *x, float *y, int dim) {
 	printf("Methode de Cholesky effectuee\n");
 ///Factorisation A = B.Bt
+	float sum = 0;
     for(int i = 0 ; i < dim ; i++){
-        for(int j = 0 ; j <= i ; j++){
-				float sum = 0;
-			if(j == i){
-				for(int k = 0 ; k < i ; k++){
-					sum += a[i][k] * a[i][k];
-					// printf("a[%d][%d] * a[%d][%d] = %f\n", i, k, i, k, sum);
-				}
-				a[i][j] = sqrt( a[i][j] - sum );
-				// printf("(sqrt(a[%d][%d] - %f) = a[%d][%d]\n", i, i, sum, i, i);
+        for(int j = 0 ; j < i ; j++){
+			sum = 0;
+			for(int k = 0 ; k < j  ; k++){
+				sum += a[i][k] * a[j][k];
+				// printf("a[%d][%d] * a[%d][%d] = %f\n", i, k, j, k, sum);
 			}
-			else{
-				for(int k = 0 ; k < j  ; k++){
-					sum += a[i][k] * a[j][k];
-					// printf("a[%d][%d] * a[%d][%d] = %f\n", i, k, j, k, sum);
-				}
-				a[i][j] = ( 1 / a[j][j]) * ( a[i][j] - sum ) ;
-				// printf("(a[%d][%d] - %f) / a[%d][%d] = a[%d][%d]\n", i, j, sum, j, j, i, j);
-			}	
+			a[i][j] = ( 1 / a[j][j]) * ( a[i][j] - sum ) ;
+			// printf("(a[%d][%d] - %f) / a[%d][%d] = a[%d][%d]\n", i, j, sum, j, j, i, j);
         }
-        for(int j = i + 1; j < dim ; j++){
-            a[i][j] = 0;
-        }
+		sum = 0;
+		for(int k = 0 ; k < i ; k++){
+			sum += a[i][k] * a[i][k];
+			// printf("a[%d][%d] * a[%d][%d] = %f\n", i, k, i, k, sum);
+		}
+		a[i][i] = sqrt( a[i][i] - sum );
+		// printf("(sqrt(a[%d][%d] - %f) = a[%d][%d]\n", i, i, sum, i, i);
 		// printf("ligne %d", i+1);
-        // display_result(a, NULL, dim);
+        display_result(a, NULL, dim);
     }
 
 ///Resolution de B.y = b
     float tmp = 0;
     for(int i = 0; i < dim; i++) {
-		tmp = 0;
-        for(int j = i-1; j < dim; j++) {
+		float tmp = 0;
+        for(int j = 0; j < i; j++) {
             tmp += a[i][j]*y[j];
         }
         y[i] = (1/a[i][i])*(b[i]-tmp);
     }
+	display_result(NULL, y, dim);
 
 ///Resolution de Bt.x = y
-	for(int i=0;i<dim;i++){
-		for(int j=0;j<dim;j++){
-			float tmp = a[i][j];
-			a[i][j] = a[j][i];
-			a[j][i] = tmp;
-		}
-	}
 
 	for(int i = dim-1; i >= 0; i--) {
-        tmp = 0;
-        for(int j = 1+i; j <= dim; j++) {
-            tmp += a[i][j]*y[j];
+        float tmp = 0;
+        for(int j = 1+i; j < dim; j++) {
+            tmp += a[j][i]*x[j];
         }
         x[i] = (1/a[i][i])*(y[i]-tmp);
     }
-	// display_result(NULL, x, dim);
 }
 
 void cleanup(float **ptr0, float *ptr, int dim) {

@@ -1,0 +1,2 @@
+insert into seller (name) values ("Koto"), ("Bozy"), ("Lita"), ("Bema"), ("Soa"), ("Meva");
+insert into business (seller_id, business_name, turnover) values (1, "car", 2300),(3, "moto", 1500),(1, "moto", 1300),(2, "car", 2400),(2, "car", 2600),(1, "car", 1800),(4, "moto", 2200),(6, "car", 2500),(5, "moto", 200),(5, "car", 1300),(1, "car", 2200),(4, "car", 3100),(6, "moto", 2300),(4, "moto", 1300),(1, "moto", 1300),(2, "car", 1300),(3, "moto", 2300);
